@@ -1,0 +1,109 @@
+# ----------------------------------------------------------------------------
+# General / OS
+# ----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.log
+*.swp
+*~
+.history
+
+# ----------------------------------------------------------------------------
+# Flutter / Dart
+# ----------------------------------------------------------------------------
+.dart_tool/
+**/ .dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+**/build/
+build/
+**/doc/api/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/Ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/lib/generated_plugin_registrant.dart
+**/pubspec_overrides.yaml
+
+# ----------------------------------------------------------------------------
+# Android
+# ----------------------------------------------------------------------------
+**/android/.gradle/
+**/android/local.properties
+**/android/**/generated/
+**/android/*/build/
+*.jks
+*.keystore
+*.p12
+*.pem
+*.der
+**/android/key.properties
+**/android/app/google-services.json
+
+# ----------------------------------------------------------------------------
+# iOS / macOS
+# ----------------------------------------------------------------------------
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/DerivedData/
+**/ios/*.xcworkspace/
+**/ios/UserData/
+**/ios/project.xcworkspace/
+**/ios/xcuserdata/
+**/ios/GoogleService-Info.plist
+
+# ----------------------------------------------------------------------------
+# IDEs
+# ----------------------------------------------------------------------------
+.idea/
+**/.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+**/.vscode/
+.classpath
+.project
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ----------------------------------------------------------------------------
+# Secrets / Environment
+# ----------------------------------------------------------------------------
+.env
+.env.*
+*.env
+secrets.json
+auth.json
+firebase_options.dart
+
+# ----------------------------------------------------------------------------
+# Build Artifacts
+# ----------------------------------------------------------------------------
+*.apk
+*.aab
+*.ipa
+*.app
+*.exe
+*.dll
+*.so
+*.dill
+*.cache
+*.pdb
+debug/
+profile/
+release/
