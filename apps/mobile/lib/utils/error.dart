@@ -1,3 +1,12 @@
+enum OperationStatus { initial, loading, success, error }
+
+class OperationInfo {
+  final OperationStatus status;
+  final Failure? error;
+
+  const OperationInfo({required this.status, this.error});
+}
+
 abstract class Failure {
   final String message;
   final int? statusCode;

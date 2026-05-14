@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-class UserActivity {
+class UserActivityModel {
   final String id;
   final String user;
   final String type;
@@ -10,7 +10,7 @@ class UserActivity {
   final String created_at;
   final String updated_at;
 
-  const UserActivity({
+  const UserActivityModel({
     required this.id,
     required this.user,
     required this.type,
@@ -21,7 +21,7 @@ class UserActivity {
     required this.updated_at,
   });
 
-  UserActivity copyWith({
+  UserActivityModel copyWith({
     String? id,
     String? user,
     String? type,
@@ -31,7 +31,7 @@ class UserActivity {
     String? created_at,
     String? updated_at,
   }) {
-    return UserActivity(
+    return UserActivityModel(
       id: id ?? this.id,
       user: user ?? this.user,
       type: type ?? this.type,
@@ -43,8 +43,8 @@ class UserActivity {
     );
   }
 
-  factory UserActivity.fromJson(Map<String, dynamic> json) {
-    return UserActivity(
+  factory UserActivityModel.fromJson(Map<String, dynamic> json) {
+    return UserActivityModel(
       id: json['_id'] ?? '',
       user: json['user'] ?? '',
       type: json['type'] ?? '',
