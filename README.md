@@ -1,17 +1,18 @@
-# mobile
+# Cruz
 
-A new Flutter project.
+Cruz is a Flutter gaming-presence and chat application with an Android-first
+background game detector and a TypeScript/Prisma API.
 
-## Getting Started
+## Projects
 
-This project is a starting point for a Flutter application.
+- `apps/mobile`: Cruz Flutter application.
+- `apps/api`: Cruz Express and Prisma API.
 
-A few resources to get you started if this is your first Flutter project:
+## Local development
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Run `flutter pub get` in `apps/mobile`, copy `.env.example` to `.env`, and set
+the API and Google client values. Run `pnpm install` and `pnpm run db:push` in
+`apps/api`, then start the API with `pnpm run dev`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Android game detection requires Usage Access permission and a foreground
+service. The service persists its selected packages and resumes after boot.

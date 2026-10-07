@@ -1,7 +1,21 @@
-// ignore_for_file: constant_identifier_names
+class ApiEndpoints {
+  ApiEndpoints._();
 
-class ApiConstants {
-  static const String BASE_URL = "http://localhost:4000/api/v1";
-  static const int CONNECT_TIMEOUT = 10000;
-  static const int RECEIVE_TIMEOUT = 10000;
+  static const googleAuth = '/auth/google';
+  static const me = '/auth/me';
+  static const logout = '/auth/logout';
+  static const gameCatalog = '/games/catalog';
+  static const selectedGames = '/games/selected';
+  static const activityFeed = '/activity/feed';
+  static const presenceStart = '/presence/sessions/start';
+  static const presenceStop = '/presence/sessions/stop';
+  static const friendSearch = '/friends/search';
+  static const friends = '/friends';
+  static const friendRequests = '/friends/requests';
+  static const conversations = '/conversations';
+  static const createConversation = '/conversations';
+  static String conversationMessages(String id) =>
+      '/conversations/$id/messages';
+  static String conversationRead(String id) => '/conversations/$id/read';
+  static const deviceToken = '/notifications/device-token';
 }

@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+  BLOCKED
+}
+
+enum PresenceStatus {
+  PLAYING
+  ENDED
+}
+
+model User {
+  id                 String              @id @default(cuid())
+  google_id          String              @unique
+  email              String              @unique
+  name               String
+  gamer_tag          String              @unique
+  avatar_url         String?
+  status             UserStatus          @default(ACTIVE)
+  created_at         DateTime            @default(now())
+  updated_at         DateTime            @updatedAt
+  selected_games     UserGame[]
+  requested_friends  Friendship[]        @relation("requestedFriends")
+  received_friends   Friendship[]        @relation("receivedFriends")
+  presence_sessions  PresenceSession[]
+  conversation_links ConversationMember[]
+  messages           Message[]
+  device_tokens      DeviceToken[]
+}
+
+model GameCatalog {
+  id           String     @id @default(cuid())
+  name         String
+  package_name String     @unique
+  icon_url     String?
+  is_curated   Boolean    @default(true)
+  selected_by  UserGame[]
+  created_at   DateTime   @default(now())
+}
+
+model UserGame {
+  id              String       @id @default(cuid())
+  user_id         String
+  catalog_game_id String?
+  name            String
+  package_name    String
+  created_at      DateTime     @default(now())
+  user            User         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  catalog_game    GameCatalog? @relation(fields: [catalog_game_id], references: [id], onDelete: SetNull)
+
+  @@unique([user_id, package_name])
+  @@index([package_name])
+}
+
+model Friendship {
+  id           String           @id @default(cuid())
+  requester_id String
+  addressee_id String
+  status       FriendshipStatus @default(PENDING)
+  created_at   DateTime         @default(now())
+  updated_at   DateTime         @updatedAt
+  requester    User             @relation("requestedFriends", fields: [requester_id], references: [id], onDelete: Cascade)
+  addressee    User             @relation("receivedFriends", fields: [addressee_id], references: [id], onDelete: Cascade)
+
+  @@unique([requester_id, addressee_id])
+  @@index([addressee_id, status])
+  @@index([requester_id, status])
+}
+
+model PresenceSession {
+  id           String          @id @default(cuid())
+  user_id      String
+  package_name String
+  game_name    String
+  status       PresenceStatus  @default(PLAYING)
+  started_at   DateTime        @default(now())
+  ended_at     DateTime?
+  updated_at   DateTime        @updatedAt
+  user         User            @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id, status, started_at])
+}
+
+model Conversation {
+  id         String               @id @default(cuid())
+  title      String?
+  is_group   Boolean              @default(false)
+  created_at DateTime             @default(now())
+  updated_at DateTime             @updatedAt
+  members    ConversationMember[]
+  messages   Message[]
+}
+
+model ConversationMember {
+  id              String       @id @default(cuid())
+  conversation_id String
+  user_id         String
+  joined_at       DateTime     @default(now())
+  conversation    Conversation @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
+  user            User         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([conversation_id, user_id])
+  @@index([user_id])
+}
+
+model Message {
+  id              String       @id @default(cuid())
+  conversation_id String
+  sender_id       String
+  body            String
+  created_at      DateTime     @default(now())
+  read_at         DateTime?
+  conversation    Conversation @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
+  sender          User         @relation(fields: [sender_id], references: [id], onDelete: Cascade)
+
+  @@index([conversation_id, created_at])
+}
+
+model DeviceToken {
+  id         String   @id @default(cuid())
+  user_id    String
+  token      String   @unique
+  platform   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}

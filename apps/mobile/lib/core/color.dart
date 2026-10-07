@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryIndigo = Color(0xFF5F67F1);
-  static const Color pureWhite = Color(0xFFFFFFFF);
-  static const Color deepOnyx = Color(0xFF1A1A1A);
-  static const Color softGrey = Color(0xFFF5F5F5);
+  AppColors._();
 
-  static const Color googleRed = Color(0xFFF28B82);
-  static const Color facebookBlue = Color(0xFF1877F2);
-  static const Color appleBlack = Color(0xFF2E2E2E);
-  static const Color emailIndigo = Color(0xFF8E99F3);
-  static const Color statusGreen = Color(0xFF4ADE80);
-
-  static const Color textPrimary = Color(0xFF1A1A1A);
-  static const Color textSecondary = Color(0xB31A1A1A);
-  static const Color textOnDark = Color(0xFFFFFFFF);
+  static const background = Color(0xFFF0F2F5);
+  static const loginBackground = Color(0xFF080C11);
+  static const brandDark = Color(0xFF3D1F00);
+  static const brandAccent = Color(0xFFB45309);
+  static const pureWhite = Color(0xFFFFFFFF);
+  static const textPrimary = Color(0xFF1A1A1A);
+  static const textSecondary = Color(0xFF6B7280);
+  static const faintGrey = Color(0xFFE5E7EB);
+  static const success = Color(0xFF16A34A);
+  static const error = Color(0xFFDC2626);
+  static const info = Color(0xFF2563EB);
 }
